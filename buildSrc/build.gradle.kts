@@ -25,7 +25,10 @@ configure<com.diffplug.gradle.spotless.SpotlessExtension> {
 
     kotlin {
         ktlint()
+
+        targetExclude("build/generated-sources/**")
     }
+
     kotlinGradle {
         ktlint()
     }

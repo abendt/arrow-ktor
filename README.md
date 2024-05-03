@@ -1,17 +1,5 @@
-Kotlin single module project blueprint
+Arrow/Ktor
 ======================================
-
-Buildtool
-* Gradle (Kotlin DSL)
-
-Basic dependencies
-* Kotlin JVM
-* Kotlin Logging
-* slf4j + logback
-
-Testing
-* Kotest
-* mockk
 
 ## pre-commit hooks
 
