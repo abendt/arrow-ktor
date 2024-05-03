@@ -46,7 +46,7 @@ class ExampleApiSpec : StringSpec({
                 it.httpClient(ktorClient)
             }
 
-        exampleApi.getPersonJson().let {
+        exampleApi.getPersonSerializable().let {
             it.name shouldBe "Luke Skywalker"
             it.birth_year shouldBe "19BBY"
             it.films.shouldNotBeEmpty()
@@ -73,7 +73,7 @@ class ExampleApiSpec : StringSpec({
                     .converterFactories(ArrowEitherConverterFactory())
             }
 
-        exampleApi.getPersonArrow().shouldBeRight()
+        exampleApi.getPersonEither().shouldBeRight()
             .let {
                 it.name shouldBe "Luke Skywalker"
                 it.birth_year shouldBe "19BBY"
@@ -100,7 +100,7 @@ class ExampleApiSpec : StringSpec({
                     .converterFactories(ArrowEitherConverterFactory())
             }
 
-        exampleApi.getPersonArrow2().shouldBeRight()
+        exampleApi.getPersonEitherNonSuspended().shouldBeRight()
             .let {
                 it.name shouldBe "Luke Skywalker"
                 it.birth_year shouldBe "19BBY"
@@ -166,7 +166,7 @@ class ExampleApiSpec : StringSpec({
                     .converterFactories(ArrowEitherConverterFactory())
             }
 
-        exampleApi.getPersonArrowFailing()
+        exampleApi.getPersonEitherFailing()
             .shouldBeLeft()
             .let {
                 it.shouldBeInstanceOf<ClientRequestException>()
@@ -194,7 +194,7 @@ class ExampleApiSpec : StringSpec({
                     .converterFactories(ArrowEitherConverterFactory())
             }
 
-        exampleApi.getPersonArrowFailing()
+        exampleApi.getPersonEitherFailing()
             .shouldBeLeft()
             .let {
                 it.shouldBeInstanceOf<JsonConvertException>()

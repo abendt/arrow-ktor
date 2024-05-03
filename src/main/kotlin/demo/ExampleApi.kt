@@ -10,19 +10,19 @@ interface ExampleApi {
     suspend fun getPerson(): String
 
     @GET("people/1/")
-    suspend fun getPersonJson(): PersonResponse
+    suspend fun getPersonSerializable(): PersonResponse
 
     @GET("people/1/")
-    suspend fun getPersonArrow(): Either<Throwable, PersonResponse>
+    suspend fun getPersonEither(): Either<Exception, PersonResponse>
 
     @GET("people/1/")
-    fun getPersonArrow2(): Either<Throwable, PersonResponse>
+    fun getPersonEitherNonSuspended(): Either<Exception, PersonResponse>
 
     @GET("people/a/")
-    suspend fun getPersonArrowFailing(): Either<Throwable, PersonResponse>
+    suspend fun getPersonEitherFailing(): Either<Exception, PersonResponse>
 
     @GET("people/1/")
-    suspend fun getPersonKtor(): Either<Throwable, HttpResponse>
+    suspend fun getPersonKtor(): Either<Exception, HttpResponse>
 }
 
 @Serializable
