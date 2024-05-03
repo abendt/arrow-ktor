@@ -6,7 +6,7 @@ plugins {
     kotlin("plugin.serialization") version "1.9.23"
 
     // https://foso.github.io/Ktorfit/
-    id("de.jensklingenberg.ktorfit") version "1.13.0"
+    id("de.jensklingenberg.ktorfit") version "1.14.0"
 }
 
 dependencies {
