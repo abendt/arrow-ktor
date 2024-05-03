@@ -5,6 +5,9 @@ import de.jensklingenberg.ktorfit.http.GET
 import io.ktor.client.statement.HttpResponse
 import kotlinx.serialization.Serializable
 
+/**
+ * Based on the Ktorfit Quickstart https://foso.github.io/Ktorfit/quick-start/
+ */
 interface ExampleApi {
     @GET("people/1/")
     suspend fun getPerson(): String
