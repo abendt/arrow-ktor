@@ -19,7 +19,7 @@ dependencies {
     implementation("io.arrow-kt:arrow-exact:0.1.0")
     ksp("io.arrow-kt:arrow-optics-ksp-plugin:1.2.4")
 
-    val ktorfitVersion = "1.13.0"
+    val ktorfitVersion = "1.14.0"
 
     ksp("de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorfitVersion")
 
