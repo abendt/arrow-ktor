@@ -21,7 +21,7 @@ dependencies {
 }
 
 configure<com.diffplug.gradle.spotless.SpotlessExtension> {
-    // ratchetFrom("origin/main")
+    ratchetFrom("origin/main")
 
     kotlin {
         ktlint()
