@@ -25,7 +25,7 @@ class ExampleApiSpec : StringSpec({
     "suspend GET -> String" {
         val exampleApi = buildApiClient()
 
-        exampleApi.getPerson() shouldContain "Luke Skywalker"
+        exampleApi.getPersonAsString("1") shouldContain "Luke Skywalker"
     }
 
     "suspend GET -> KotlinX Serializable" {
@@ -46,7 +46,7 @@ class ExampleApiSpec : StringSpec({
                 it.httpClient(ktorClient)
             }
 
-        exampleApi.getPersonSerializable().let {
+        exampleApi.getPersonAsSerializable("1").let {
             it.name shouldBe "Luke Skywalker"
             it.birth_year shouldBe "19BBY"
             it.films.shouldNotBeEmpty()
@@ -73,7 +73,7 @@ class ExampleApiSpec : StringSpec({
                     .converterFactories(ArrowEitherConverterFactory())
             }
 
-        exampleApi.getPersonEither().shouldBeRight()
+        exampleApi.getPersonAsEither("1").shouldBeRight()
             .let {
                 it.name shouldBe "Luke Skywalker"
                 it.birth_year shouldBe "19BBY"
@@ -100,7 +100,7 @@ class ExampleApiSpec : StringSpec({
                     .converterFactories(ArrowEitherConverterFactory())
             }
 
-        exampleApi.getPersonEitherNonSuspended().shouldBeRight()
+        exampleApi.nonSuspendedGetPersonAsEither("1").shouldBeRight()
             .let {
                 it.name shouldBe "Luke Skywalker"
                 it.birth_year shouldBe "19BBY"
@@ -127,7 +127,7 @@ class ExampleApiSpec : StringSpec({
                     .converterFactories(ArrowEitherConverterFactory())
             }
 
-        exampleApi.getPersonKtor()
+        exampleApi.getPersonAsHttpResponse("1")
             .shouldBeRight().let {
                 it.status shouldBe HttpStatusCode.OK
             }
@@ -166,7 +166,7 @@ class ExampleApiSpec : StringSpec({
                     .converterFactories(ArrowEitherConverterFactory())
             }
 
-        exampleApi.getPersonEitherFailing()
+        exampleApi.getPersonAsEither("doesNotExist")
             .shouldBeLeft()
             .let {
                 it.shouldBeInstanceOf<ClientRequestException>()
@@ -194,7 +194,7 @@ class ExampleApiSpec : StringSpec({
                     .converterFactories(ArrowEitherConverterFactory())
             }
 
-        exampleApi.getPersonEitherFailing()
+        exampleApi.getPersonAsEither("doesNotExist")
             .shouldBeLeft()
             .let {
                 it.shouldBeInstanceOf<JsonConvertException>()

@@ -2,6 +2,7 @@ package demo
 
 import arrow.core.Either
 import de.jensklingenberg.ktorfit.http.GET
+import de.jensklingenberg.ktorfit.http.Path
 import io.ktor.client.statement.HttpResponse
 import kotlinx.serialization.Serializable
 
@@ -9,23 +10,30 @@ import kotlinx.serialization.Serializable
  * Based on the Ktorfit Quickstart https://foso.github.io/Ktorfit/quick-start/
  */
 interface ExampleApi {
-    @GET("people/1/")
-    suspend fun getPerson(): String
+    @GET("people/{peopleId}/")
+    suspend fun getPersonAsString(
+        @Path("peopleId") id: String,
+    ): String
 
-    @GET("people/1/")
-    suspend fun getPersonSerializable(): PersonResponse
+    @GET("people/{peopleId}/")
+    suspend fun getPersonAsSerializable(
+        @Path("peopleId") id: String,
+    ): PersonResponse
 
-    @GET("people/1/")
-    suspend fun getPersonEither(): Either<Exception, PersonResponse>
+    @GET("people/{peopleId}/")
+    suspend fun getPersonAsEither(
+        @Path("peopleId") id: String,
+    ): Either<Exception, PersonResponse>
 
-    @GET("people/1/")
-    fun getPersonEitherNonSuspended(): Either<Exception, PersonResponse>
+    @GET("people/{peopleId}/")
+    fun nonSuspendedGetPersonAsEither(
+        @Path("peopleId") id: String,
+    ): Either<Exception, PersonResponse>
 
-    @GET("people/a/")
-    suspend fun getPersonEitherFailing(): Either<Exception, PersonResponse>
-
-    @GET("people/1/")
-    suspend fun getPersonKtor(): Either<Exception, HttpResponse>
+    @GET("people/{peopleId}/")
+    suspend fun getPersonAsHttpResponse(
+        @Path("peopleId") id: String,
+    ): Either<Exception, HttpResponse>
 }
 
 @Serializable
