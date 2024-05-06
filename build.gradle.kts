@@ -33,6 +33,9 @@ dependencies {
     testImplementation("io.ktor:ktor-serialization-kotlinx-json")
 
     testImplementation("io.ktor:ktor-client-logging")
+
+    testImplementation("io.kotest.extensions:kotest-extensions-wiremock:3.0.1")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-debug:1.8.0")
 }
 
 spotless {

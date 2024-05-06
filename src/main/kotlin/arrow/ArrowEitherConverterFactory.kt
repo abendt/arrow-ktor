@@ -16,10 +16,10 @@ class ArrowEitherConverterFactory : Converter.Factory {
     override fun suspendResponseConverter(
         typeData: TypeData,
         ktorfit: Ktorfit,
-    ): Converter.SuspendResponseConverter<HttpResponse, Either<Throwable, *>>? {
+    ): Converter.SuspendResponseConverter<HttpResponse, Either<*, *>>? {
         if (typeData.typeInfo.type == Either::class) {
-            return object : Converter.SuspendResponseConverter<HttpResponse, Either<Throwable, *>> {
-                override suspend fun convert(result: KtorfitResult): Either<Throwable, Any> =
+            return object : Converter.SuspendResponseConverter<HttpResponse, Either<*, *>> {
+                override suspend fun convert(result: KtorfitResult): Either<Any, Any> =
                     result.fold(::Left) {
                         readBody(it, typeData)
                     }
@@ -36,9 +36,9 @@ class ArrowEitherConverterFactory : Converter.Factory {
     private suspend fun readBody(
         httpResponse: HttpResponse,
         typeData: TypeData,
-    ): Either<Exception, Any> =
+    ): Either<Any, Any> =
         try {
-            httpResponse.body<Either<Throwable, Any>>(typeData.typeArgs[1].typeInfo).right()
+            httpResponse.body<Any>(typeData.typeArgs[1].typeInfo).right()
         } catch (ex: Exception) {
             ex.left()
         }
@@ -46,12 +46,16 @@ class ArrowEitherConverterFactory : Converter.Factory {
     override fun responseConverter(
         typeData: TypeData,
         ktorfit: Ktorfit,
-    ): Converter.ResponseConverter<HttpResponse, Either<Throwable, *>>? {
+    ): Converter.ResponseConverter<HttpResponse, Either<*, *>>? {
         if (typeData.typeInfo.type == Either::class) {
-            return object : Converter.ResponseConverter<HttpResponse, Either<Throwable, *>> {
-                override fun convert(getResponse: suspend () -> HttpResponse): Either<Throwable, Any> =
+            return object : Converter.ResponseConverter<HttpResponse, Either<*, *>> {
+                override fun convert(getResponse: suspend () -> HttpResponse): Either<Any, Any> =
                     runBlocking {
-                        readBody(getResponse(), typeData)
+                        try {
+                            readBody(getResponse(), typeData)
+                        } catch (ex: Exception) {
+                            ex.left()
+                        }
                     }
             }
         }

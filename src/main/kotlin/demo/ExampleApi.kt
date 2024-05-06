@@ -38,3 +38,6 @@ interface ExampleApi {
 
 @Serializable
 data class PersonResponse(val name: String, val birth_year: String, val films: List<String>)
+
+@Serializable
+data class PersonResponse2(val missingField: String)
