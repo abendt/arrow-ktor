@@ -38,7 +38,7 @@ class ExampleApiSpec : FreeSpec({
                 .also(customizer)
                 .build()
 
-        return ktorfit.create()
+        return ktorfit.createExampleApi()
     }
 
     @Language("json")

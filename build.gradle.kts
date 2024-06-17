@@ -1,17 +1,17 @@
 plugins {
     id("module-conventions")
 
-    id("com.google.devtools.ksp") version "1.9.23-1.0.20"
+    id("com.google.devtools.ksp") version "2.0.0-1.0.22"
 
     kotlin("plugin.serialization") version "2.0.0"
 
     // https://foso.github.io/Ktorfit/
-    id("de.jensklingenberg.ktorfit") version "1.13.0"
+    id("de.jensklingenberg.ktorfit") version "2.0.0"
 }
 
 dependencies {
     implementation(platform("io.arrow-kt:arrow-stack:1.2.4"))
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.3")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0")
 
     implementation("io.arrow-kt:arrow-core")
     implementation("io.arrow-kt:arrow-fx-coroutines")
@@ -19,7 +19,7 @@ dependencies {
     implementation("io.arrow-kt:arrow-exact:0.1.0")
     ksp("io.arrow-kt:arrow-optics-ksp-plugin:1.2.4")
 
-    val ktorfitVersion = "1.13.0"
+    val ktorfitVersion = "2.0.0"
 
     ksp("de.jensklingenberg.ktorfit:ktorfit-ksp:$ktorfitVersion")
 

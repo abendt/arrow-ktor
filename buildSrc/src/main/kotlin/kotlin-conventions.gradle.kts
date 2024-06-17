@@ -1,4 +1,5 @@
 import org.gradle.accessors.dm.LibrariesForLibs
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -32,7 +33,7 @@ dependencies {
 val isIdea = providers.systemProperty("idea.version").isPresent
 
 tasks.withType(KotlinCompile::class.java).configureEach {
-    kotlinOptions {
+    compilerOptions {
         // don't fail the build when running tests in idea!
         allWarningsAsErrors = !isIdea
 
@@ -40,10 +41,10 @@ tasks.withType(KotlinCompile::class.java).configureEach {
         freeCompilerArgs = listOf("-Xjsr305=strict", "-Xcontext-receivers")
 
         if (isIdea) {
-            freeCompilerArgs += "-Xdebug"
+            freeCompilerArgs.add("-Xdebug")
         }
 
-        jvmTarget = libs.versions.java.get()
+        jvmTarget.set(JvmTarget.fromTarget(libs.versions.java.get()))
     }
 }
 
