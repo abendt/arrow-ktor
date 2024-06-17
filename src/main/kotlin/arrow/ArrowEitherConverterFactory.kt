@@ -7,7 +7,7 @@ import arrow.core.right
 import de.jensklingenberg.ktorfit.Ktorfit
 import de.jensklingenberg.ktorfit.converter.Converter
 import de.jensklingenberg.ktorfit.converter.KtorfitResult
-import de.jensklingenberg.ktorfit.internal.TypeData
+import de.jensklingenberg.ktorfit.converter.TypeData
 import io.ktor.client.call.body
 import io.ktor.client.statement.HttpResponse
 import kotlinx.coroutines.runBlocking
@@ -23,11 +23,6 @@ class ArrowEitherConverterFactory : Converter.Factory {
                     result.fold(::Left) {
                         readBody(it, typeData)
                     }
-
-                @Deprecated("deprecated in interface")
-                override suspend fun convert(response: HttpResponse): Either<Throwable, Any> {
-                    throw AssertionError("required by the interface but shouldn't be used directly!")
-                }
             }
         }
         return null
