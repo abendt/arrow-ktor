@@ -11,7 +11,7 @@ plugins {
 
 dependencies {
     implementation(platform("io.arrow-kt:arrow-stack:1.2.4"))
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
 
     implementation("io.arrow-kt:arrow-core")
     implementation("io.arrow-kt:arrow-fx-coroutines")
