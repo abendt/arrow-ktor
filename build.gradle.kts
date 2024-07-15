@@ -1,7 +1,7 @@
 plugins {
     id("module-conventions")
 
-    id("com.google.devtools.ksp") version "2.0.0-1.0.22"
+    id("com.google.devtools.ksp") version "2.0.0-1.0.23"
 
     kotlin("plugin.serialization") version "2.0.0"
 
