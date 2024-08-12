@@ -3,7 +3,7 @@ plugins {
 
     id("com.google.devtools.ksp") version "2.0.0-1.0.23"
 
-    kotlin("plugin.serialization") version "2.0.0"
+    kotlin("plugin.serialization") version "2.0.10"
 
     // https://foso.github.io/Ktorfit/
     id("de.jensklingenberg.ktorfit") version "2.0.0"
