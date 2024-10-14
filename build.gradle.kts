@@ -27,7 +27,7 @@ dependencies {
 
     testImplementation("io.kotest.extensions:kotest-assertions-arrow:1.4.0")
 
-    implementation(platform("io.ktor:ktor-bom:2.3.12"))
+    implementation(platform("io.ktor:ktor-bom:3.0.0"))
 
     testImplementation("io.ktor:ktor-client-content-negotiation")
     testImplementation("io.ktor:ktor-serialization-kotlinx-json")
