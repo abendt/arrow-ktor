@@ -17,7 +17,7 @@ dependencies {
     implementation("io.arrow-kt:arrow-fx-coroutines")
     implementation("io.arrow-kt:arrow-optics")
     implementation("io.arrow-kt:arrow-exact:0.1.0")
-    ksp("io.arrow-kt:arrow-optics-ksp-plugin:1.2.4")
+    ksp("io.arrow-kt:arrow-optics-ksp-plugin:2.0.0")
 
     val ktorfitVersion = "2.0.0"
 
