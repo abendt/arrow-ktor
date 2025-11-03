@@ -25,7 +25,7 @@ dependencies {
 
     implementation("de.jensklingenberg.ktorfit:ktorfit-lib:$ktorfitVersion")
 
-    testImplementation("io.kotest.extensions:kotest-assertions-arrow:1.4.0")
+    testImplementation("io.kotest.extensions:kotest-assertions-arrow:2.0.0")
 
     implementation(platform("io.ktor:ktor-bom:2.3.12"))
 
